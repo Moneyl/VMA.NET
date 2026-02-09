@@ -1,0 +1,2 @@
+# VMA.NET
+.NET wrapper for the [Vulkan Memory Allocator](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator). Meant for use with [Silk.NET](https://dotnet.github.io/Silk.NET/). I only made this for use in personal projects. I wanted a more up to date wrapper. Other options like [VMASharp](https://github.com/sunkin351/VMASharp/tree/master) were very out of date (4 years since the last commit as of writing this). Note that this is just a wrapper for the C++ library, whereas VMASharp is a port.
