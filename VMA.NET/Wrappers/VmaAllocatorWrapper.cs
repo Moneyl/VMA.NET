@@ -25,16 +25,20 @@ public unsafe class VmaAllocatorWrapper : IDisposable
         uint vulkanApiVersion = 0,
         ulong preferredLargeHeapBlockSize = 0)
     {
-        var getInstanceProcAddr = vk.Context.GetProcAddress("vkGetInstanceProcAddr");
-        var getDeviceProcAddr = vk.Context.GetProcAddress("vkGetDeviceProcAddr");
-
-        var vulkanFunctions = new VmaVulkanFunctions
+        IntPtr getInstanceProcAddr = vk.Context.GetProcAddress("vkGetInstanceProcAddr");
+        IntPtr getDeviceProcAddr = vk.Context.GetProcAddress("vkGetDeviceProcAddr");
+        if (getInstanceProcAddr == 0 || getDeviceProcAddr == 0)
+        {
+            throw new InvalidOperationException("Failed to get Vulkan function pointers. Ensure Vulkan is properly loaded.");
+        }
+        
+        VmaVulkanFunctions vulkanFunctions = new()
         {
             VkGetInstanceProcAddr = (nint)getInstanceProcAddr,
             VkGetDeviceProcAddr = (nint)getDeviceProcAddr,
         };
 
-        var createInfo = new VmaAllocatorCreateInfo
+        VmaAllocatorCreateInfo createInfo = new()
         {
             Flags = flags,
             PhysicalDevice = physicalDevice,
