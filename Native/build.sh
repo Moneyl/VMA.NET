@@ -1,0 +1,1 @@
+g++ -O3 -shared -fPIC -I "./Dependencies/VulkanMemoryAllocator/include/" -o vma.so vma.cpp
