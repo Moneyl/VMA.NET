@@ -8,4 +8,12 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Silk.NET.Vulkan" Version="2.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="../Native/libvma.so" CopyToOutputDirectory="PreserveNewest" Link="libvma.so" />
+    </ItemGroup>
+
 </Project>
