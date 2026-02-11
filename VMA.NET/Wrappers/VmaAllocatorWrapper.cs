@@ -194,6 +194,18 @@ public unsafe class VmaAllocatorWrapper : IDisposable
         return context;
     }
 
+    public (VmaDefragmentationPassMoveInfo PassInfo, Result Result) BeginDefragmentationPass(VmaDefragmentationContext context)
+    {
+        VmaDefragmentationPassMoveInfo passInfo;
+        Result result = Vma.BeginDefragmentationPass(Handle, context, &passInfo);
+        return (passInfo, result);
+    }
+
+    public Result EndDefragmentationPass(VmaDefragmentationContext context, VmaDefragmentationPassMoveInfo* pPassInfo)
+    {
+        return Vma.EndDefragmentationPass(Handle, context, pPassInfo);
+    }
+
     public VmaDefragmentationStats EndDefragmentation(VmaDefragmentationContext context)
     {
         VmaDefragmentationStats stats;
